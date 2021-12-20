@@ -1,0 +1,19 @@
+public class App {
+    public static void main(String[] args) {
+        int[] inputArray = {5, 10, 15, 20, 25, 30};
+        int outputIndex = searchNReturnIndex(inputArray, 100);
+        if (outputIndex == -1)
+            System.out.println("Number being searched is NOT present in the array.");
+        else
+            System.out.println("Number is present at index: " + outputIndex);
+    }
+
+    public static int searchNReturnIndex(int[] input, int numberToSearch) {
+        int arraySize = input.length;
+        for (int i = 0; i < arraySize; ++i) {
+            if (input[i] == numberToSearch)
+                return i;
+        }
+        return -1;
+    }
+}

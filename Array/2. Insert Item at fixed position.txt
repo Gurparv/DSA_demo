@@ -1,0 +1,41 @@
+
+
+public class App {
+    public static void main(String[] args) {
+        int[] arrayInput= initializeAnInputArray();
+        printArray(arrayInput);
+        System.out.println("-----------");
+        addItemOnPosition(arrayInput,2,10);
+        printArray(arrayInput);
+    }
+
+    public static int[] addItemOnPosition(int[] inputArray, int position,int numberToAdd){
+       int lengthOfArray= inputArray.length;
+       if(position<=0){
+           System.out.println("Invalid position Error: Too low");
+           return new int[0];
+       }
+       int index = position-1;
+       int savedNumber;
+       for(int i=index;i<lengthOfArray-1;++i){
+          savedNumber=inputArray[i];
+          inputArray[i]=numberToAdd;
+          numberToAdd=savedNumber;
+       }
+       return inputArray;
+    }
+
+    public static int[] initializeAnInputArray(){
+        int[] array= new int[5];
+        array[0]=2;
+        array[1]=11;
+        array[2]=50;
+        return array; //returns array [2,11,50,_,_]
+    }
+
+    public static void printArray(int[] arrayInput){
+        for(int i=0;i<arrayInput.length;++i){
+            System.out.println(arrayInput[i]);
+        }
+    }
+}
