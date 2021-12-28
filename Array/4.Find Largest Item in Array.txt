@@ -1,0 +1,25 @@
+public class main {
+    public static void main(String[] args) {
+        int[] input ={2,72,4,59,0};
+        int indexOfLargest= findLargestItem(input);
+        System.out.println(indexOfLargest);
+    }
+
+    public static int findLargestItem(int[] input){
+        final int size= input.length;
+/*
+        int currentValue= Integer.MIN_VALUE;  This can also be done but currentValue=input[0] is better as that solution
+        is language independent becoz Integer.MIN_VALUE will not work in other languages.
+*/
+        int currentValue = input[0];
+        
+        int indexOfLargest= 0;
+       for(int i=0; i<size; ++i) {
+           if(input[i]>currentValue){
+               currentValue=input[i];
+               indexOfLargest=i;
+           }
+       }
+       return indexOfLargest;
+    }
+}
