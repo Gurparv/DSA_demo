@@ -1,0 +1,47 @@
+// using Naive solution which finds the second largest but used 2 traversals.
+public class main {
+    public static void main(String[] args) {
+        int[] inputArray = {10,5,8,20};
+        // int[] inputArray = {20,10,20,8,12};
+        // int[] inputArray = {10,10,10};
+        int largestNumber = getLargestNumberInArray(inputArray);
+        System.out.println("Largest number :"+largestNumber);
+        int indexOfSecLargest = getIndexOfSecondLargest(inputArray, largestNumber);
+        System.out.println("index of second largest: "+indexOfSecLargest);
+    }
+
+    public static int getLargestNumberInArray(int[] input){
+        final int size = input.length;
+        int biggestNumber= input[0];
+        for(int i=0; i<size;++i){
+            if (biggestNumber < input[i]){
+                biggestNumber = input[i];
+            }
+        }
+        return biggestNumber;
+    }
+
+    public static int getIndexOfSecondLargest(int[] input, int biggestNum){
+        int size= input.length;
+        int secondLargestNum =0;
+        boolean flag = true;
+        int indexOfSecondLargest = -1;
+        int currentItem;
+        for(int i=0;i<size; ++i){
+            currentItem = input[i];
+            if(currentItem==biggestNum)
+                continue;
+            if(flag){
+                secondLargestNum=currentItem;
+                indexOfSecondLargest =i;
+                flag = false;
+            }else{
+                if(secondLargestNum < currentItem){
+                secondLargestNum = currentItem;
+                indexOfSecondLargest = i;
+                }
+            }
+        }
+        return indexOfSecondLargest;
+    }
+}
