@@ -1,0 +1,29 @@
+// using optmised approach that uses only 1 traversal.
+public class main {
+    public static void main(String[] args) {
+        int[] inputArray = {10,5,8,20};
+        // int[] inputArray = {20,10,20,8,12};
+        // int[] inputArray = {10,10,10};
+       int indexOfSecondLargest = getIndexOfSecondLargest(inputArray);
+        System.out.println("Index of second largest: "+indexOfSecondLargest);
+    }
+
+    public static int getIndexOfSecondLargest(int[] inputArray){
+        final int size = inputArray.length;
+        int largest = 0;
+        int result = -1;
+        for (int i = 1; i < size; i++) {
+            if(inputArray[i]>inputArray[largest]){
+                result = largest;
+                largest = i;
+            }
+            else if(inputArray[i]!=inputArray[largest]){
+                if(result==-1 || inputArray[i]>inputArray[result]){
+                    result = i;
+                }
+            }
+        }
+        return result;
+    }
+
+}
