@@ -1,0 +1,31 @@
+//Logic is to do leftRotateBy1 'd' times
+public class main {
+    public static void main(String[] args) {
+        int[] inputArray = {1,2,3,4,5}; //d=2   
+        //int[] inputArray = {10,5,30,15}; //d=3
+        printArray(inputArray);
+        System.out.println("\r");
+        leftRotateArrayByD(inputArray,2);
+        printArray(inputArray);
+    }
+
+    public static void printArray(int[] input){
+        for (int i = 0; i < input.length; i++) {
+            System.out.print(input[i]);
+        }
+    }
+
+    public static void leftRotateArrayByOne(int[] input){
+        int temp = input[0];
+        for (int i=1;i<input.length;++i){
+            input[i-1]=input[i];
+        }
+        input[input.length-1]=temp;
+    }
+
+    public static void leftRotateArrayByD(int[] input,int d){
+        for (int i = 0; i < d; i++) {
+            leftRotateArrayByOne(input);
+        }
+    }
+}
