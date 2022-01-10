@@ -1,0 +1,27 @@
+//Stock Buy and Sell Problem when you the stock prices of some consecutive days.
+public class main {
+    public static void main(String[] args) {
+        int[] price = {1,5,3,8,12};     //13
+        //int[] price= {30,20,10};  //0
+        //int[] price= {10,20,30};     //20
+        //int[] price= {1,5,3,1,2,8};     //11
+        printArray(price);
+        System.out.println("\n"+findMaxProfitBySellingStocks(price));
+    }
+
+    public static void printArray(int[] input) {
+        for (int i = 0; i < input.length; i++) {
+            System.out.print(input[i]);
+            System.out.print(" ");
+        }
+    }
+
+   public static int findMaxProfitBySellingStocks(int[] price){
+        int totalProfit = 0;
+        for(int i=1;i<price.length;i++){
+            if(price[i]>price[i-1])
+                totalProfit+=(price[i]-price[i-1]);
+        }
+        return totalProfit;
+   }
+}
