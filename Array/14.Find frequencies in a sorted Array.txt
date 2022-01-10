@@ -1,0 +1,34 @@
+//Frequencies of items in a Sorted Array.
+public class main {
+    public static void main(String[] args) {
+        int[] sortedArray = {10,10,10,25,30,30};     //10-3 times, 25-1 times, 30-2 times.
+        //int[] sortedArray= {10,10,10,10};  //10-4 times
+        //int[] sortedArray= {10,20,30};     //10-1 times,20-1 times, 30-1 times.
+        printArray(sortedArray);
+        printFrequenciesOfItemsInSortedArray(sortedArray);
+    }
+
+    public static void printArray(int[] input) {
+        for (int i = 0; i < input.length; i++) {
+            System.out.println(input[i]);
+        }
+    }
+
+    public static void printFrequenciesOfItemsInSortedArray(int[] inputArray){
+        int size = inputArray.length;
+        int frequency =1;
+        int i=1;
+        while(i<size){
+            while(i<size && inputArray[i]==inputArray[i-1]){
+                frequency++;
+                i++;
+            }
+            System.out.println(inputArray[i-1]+"-->"+frequency);
+            i++;
+            frequency=1;
+        }
+        if(size==1 || inputArray[size-1]!= inputArray[size-2])
+            System.out.println(inputArray[i-1]+"-->"+frequency);
+    }
+
+}
