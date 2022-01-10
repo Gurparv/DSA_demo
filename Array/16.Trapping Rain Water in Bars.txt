@@ -1,0 +1,52 @@
+public class main {
+    public static void main(String[] args) {
+        int[] bar = {3, 0, 1, 2, 5};     //6
+        //int[] bar= {2,0,2};  //2
+        printArray(bar);
+        System.out.println("\n" + calculateTrappedRainInBars(bar));
+    }
+
+    public static void printArray(int[] input) {
+        for (int i = 0; i < input.length; i++) {
+            System.out.print(input[i]);
+            System.out.print(" ");
+        }
+    }
+
+    public static int calculateTrappedRainInBars(int[] bar) {
+        int len = bar.length;
+        int totalWater = 0;
+        int[] maxFromLeft = new int[len];
+        int[] maxFromRight = new int[len];
+
+        //pre-compute all maxFromLeft side in Array
+        maxFromLeft[0] = bar[0];
+        for (int i = 1; i < len; i++) {
+            maxFromLeft[i] = max(bar[i], maxFromLeft[i - 1]);
+        }
+
+        //pre-compute all maxFromRight side in Array
+        maxFromRight[len - 1] = bar[len - 1];
+        for (int i = len - 2; i >= 0; i--) {
+            maxFromRight[i] = max(bar[i], maxFromRight[i + 1]);
+        }
+
+        //add all the results based on min of maxes from both sides.
+        for (int i = 0; i < len - 1; i++) {
+            totalWater = totalWater + (min(maxFromLeft[i], maxFromRight[i]) - bar[i]);
+        }
+        return totalWater;
+    }
+
+    public static int max(int a, int b) {
+        if (a >= b)
+            return a;
+        return b;
+    }
+
+    public static int min(int a, int b) {
+        if (a <= b)
+            return a;
+        return b;
+    }
+}
