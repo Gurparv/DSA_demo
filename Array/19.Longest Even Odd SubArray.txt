@@ -1,0 +1,24 @@
+public class main {
+    public static void main(String[] args) {
+       int[] inputArray = {10,12,14,7,8}; //3
+      // int[] inputArray = {7,10,13,14};
+      // int[] inputArray = {10,12,8,4};
+       int res = findMaxLengthEvenOddSubarray(inputArray);
+        System.out.println(res);
+    }
+
+    public static int findMaxLengthEvenOddSubarray(int[] input){
+       int res=1;
+       int current =1;
+       for(int i=1;i<input.length;i++){
+           if(input[i]%2==0 && input[i-1]%2!=0 || input[i-1]%2==0 && input[i]%2!=0){
+               current++;
+               res = Math.max(current,res);
+           }
+           else
+               current=1;
+       }
+       return res;
+    }
+
+}
