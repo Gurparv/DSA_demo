@@ -1,0 +1,38 @@
+public class main {
+    public static void main(String[] args) {
+        int[] inputArray = {8,-4,3,-5,4}; //12
+        // int[] inputArray = {5, -2, 3, 4}; //12
+        // int[] inputArray = {2,3,-4}; //5
+        // int[] inputArray = {-3,4,6,-2}; //10
+        // int[] inputArray = {-8,7,6}; //13
+        // int[] inputArray = {3,-4,5,6,-8,7}; //17
+        // int res = maxCircularSubarraySum(inputArray);
+        int res = maxCircularSubarraySum(inputArray);
+        System.out.println(res);
+    }
+
+    public static int normalMaxSubarray(int[] input){
+        int maxPrev = input[0];
+        int res=input[0];
+        for(int i=1;i<input.length;i++){
+            maxPrev = Math.max(input[i],maxPrev+input[i]);
+            res = Math.max(maxPrev,res);
+        }
+        return res;
+    }
+
+    public static int maxCircularSubarraySum(int[] input){
+        int max_normal = normalMaxSubarray(input);
+        if(max_normal<0)
+            return max_normal;
+        int arr_sum=0;
+        for(int i=0; i<input.length; i++){
+            arr_sum+=input[i];
+            input[i]=-input[i];
+        }
+        int max_circular = arr_sum + normalMaxSubarray(input);
+        return Math.max(max_normal, max_circular);
+    }
+
+}
+
