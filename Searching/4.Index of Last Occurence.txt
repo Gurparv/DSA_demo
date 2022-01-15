@@ -1,0 +1,46 @@
+public class main {
+    public static void main(String[] args) {
+        int[] inputArray1 = {10, 15, 20, 20, 40, 40}; //x=20, output = 3
+        //int[] inputArray1 = {5,8,8,10,10};       //x=10, output =4
+        //int[] inputArray1 = {8,10,10,12};     //x=7, output =-1
+        int res = findIndexOfLastOccurence(inputArray1,20);
+        int res1 = findIndexOfLastOccurenceRecursive(inputArray1,0,inputArray1.length-1,20);
+        System.out.println(res);
+        System.out.println(res1);
+    }
+
+    public static int findIndexOfLastOccurence(int[] input, int x) {
+        int low=0;
+        int high=input.length-1;
+     while(low<=high){
+         int mid = (low+high)/2;
+         if(x<input[mid])
+             high=mid-1;
+         else if(x>input[mid])
+             low=mid+1;
+         else{
+             if(mid==input.length-1 || input[mid+1]!=input[mid])
+                 return mid;
+             else
+                 low=mid+1;
+         }
+     }
+        return -1;
+    }
+
+    public static int findIndexOfLastOccurenceRecursive(int[] input,int low,int high,int x){
+        int mid = (low+high)/2;
+        if(low>high)
+            return -1;
+        else if(x<input[mid])
+            return findIndexOfLastOccurenceRecursive(input,low,mid-1,x);
+        else if(x>input[mid])
+            return findIndexOfLastOccurenceRecursive(input,mid+1,high,x);
+        else{
+            if(mid==input.length-1 || input[mid+1]!=input[mid])
+                return mid;
+            else
+                return findIndexOfLastOccurenceRecursive(input,mid+1,high,x);
+        }
+    }
+}
