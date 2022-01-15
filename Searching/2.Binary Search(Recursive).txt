@@ -1,0 +1,22 @@
+public class main {
+    public static void main(String[] args) {
+        //int[] sortedArray = {10, 20, 30, 40, 50}; //x=20, output =1
+        int[] sortedArray ={10,20,30}; //x=30, output=2
+        //int[] sortedArray ={10,20,30,40}; //x=15, output= -1
+
+        int res = binarySearchRecursive(sortedArray,0, sortedArray.length-1, 20);
+        System.out.println(res);
+    }
+
+    public static int binarySearchRecursive(int[] array,int low, int high, int x) {
+        if(low>high)
+            return -1;
+        int mid = (low+high)/2;
+        if(array[mid]==x)
+            return mid;
+        else if(array[mid]>x)
+            return binarySearchRecursive(array,low, mid-1,x);
+        else
+            return binarySearchRecursive(array, mid+1, high, x);
+    }
+}
