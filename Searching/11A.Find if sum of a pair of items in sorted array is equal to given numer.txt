@@ -1,7 +1,7 @@
 //Given a sorted array and a sum,find it there is a pair with given sum.
 public class main{
     public static void main(String[] args){
-        int[] input = {};
+        int[] input = {2,4,8,9,11,12,20,30};
         int sum = 23;
         boolean res= findPairWithSumInSortedArray(input,sum);
         System.out.println(res);
