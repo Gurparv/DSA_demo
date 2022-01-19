@@ -1,0 +1,15 @@
+//Using Arrays.sort() to sort arrays containing primitive data types..
+
+import java.util.Arrays;
+
+public class main {
+    public static void main(String[] args) {
+        float[] arr1= {6.5f,20.1f,15.2f,0.7f,-5.9f};
+        Arrays.sort(arr1);
+        System.out.println(Arrays.toString(arr1));
+
+        char[] arr2 = {'t','r','i','v','o','d','a'};
+        Arrays.sort(arr2,1,5);
+        System.out.println(Arrays.toString(arr2));
+    }
+}
