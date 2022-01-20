@@ -1,0 +1,53 @@
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.LinkedList;
+import java.util.List;
+
+public class main {
+    public static void main(String[] args) {
+        //List<Book> bookList = new ArrayList<>();
+        List<Book> bookList = new LinkedList<>();
+        bookList.add(new Book("GOT","Some Old Guy",650));
+        bookList.add(new Book("Harry Potter","JK Rowling",700));
+        bookList.add(new Book("Maths NCERT","CBSE",350));
+        bookList.add(new Book("Telephone Directory","Yellow Pages",1550));
+        bookList.add(new Book("Forbes","Forbes.Co",25));
+
+        //Object of Comparator
+        BookComparator bc = new BookComparator();
+
+        Collections.sort(bookList,bc);
+        for(Book b: bookList)
+            System.out.println("Name: "+b.getBookName()+" ----- NoOfPages: "+b.numberOfPages);
+
+    }
+}
+//////////////////////////////////////////////////
+import java.util.Comparator;
+
+public class Book {
+    private String name;
+    private String author;
+    int numberOfPages;
+
+    public Book(String name,String author,int numberOfPages){
+        this.name =  name;
+        this.author = author;
+        this.numberOfPages = numberOfPages;
+    }
+
+    public String getBookName(){
+        return this.name;
+    }
+
+}
+//////////////////////////////////////////////////
+import java.util.Comparator;
+
+public class BookComparator implements Comparator<Book> {
+
+    @Override
+    public int compare(Book o1, Book o2) {
+        return o1.numberOfPages-o2.numberOfPages;
+    }
+}

@@ -1,0 +1,21 @@
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
+public class main{
+    public static void main(String[] args){
+        List<Integer> list = new ArrayList<>();
+        list.add(16);
+        list.add(30);
+        list.add(111);
+        list.add(81);
+        list.add(4);
+
+        Collections.sort(list);
+        System.out.println(list);
+        System.out.println("#####################");
+        Collections.sort(list,Collections.reverseOrder());
+        System.out.println(list);
+    }
+}
+
