@@ -1,0 +1,58 @@
+import java.util.Arrays;
+
+public class Main {
+    public static void main(String[] args) {
+        int[] inputArray = {10,5,30,15,7};
+        //merge(inputArray,0,3,6);
+
+        mergeSort(inputArray,0,4);
+        System.out.println(Arrays.toString(inputArray));
+    }
+
+    public static void mergeSort(int[] arr,int l, int r){
+        if(r>l){
+            int m = l+(r-l)/2;
+            mergeSort(arr,l,m);
+            mergeSort(arr,m+1,r);
+            merge(arr,l,m,r);
+        }
+    }
+
+    public static void merge(int[] input, int low, int mid, int high) {
+        int m = mid - low + 1;
+        int n = high - mid;
+        int[] left = new int[m];
+        int[] right = new int[n];
+        for (int i = 0; i < m; i++)
+            left[i] = input[low + i];
+        for (int i = 0; i < n; i++)
+            right[i] = input[mid + 1 + i];
+        int i = 0;
+        int j = 0;
+        int k = low;
+        while (i < m && j < n) {
+            if (left[i] <= right[j]) {
+                input[k] = left[i];
+                i++;
+            } else {
+                input[k] = right[j];
+                j++;
+            }
+            k++;
+        }
+        while (i < m) {
+            input[k] = left[i];
+            i++;
+            k++;
+        }
+        while (j < n) {
+            input[k] = right[j];
+            k++;
+            j++;
+        }
+    }
+
+
+
+
+}
