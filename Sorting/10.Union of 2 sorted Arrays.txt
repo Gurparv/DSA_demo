@@ -1,0 +1,45 @@
+public class Main {
+    public static void main(String[] args) {
+        int[] arr1 = {3, 5, 8};
+        int[] arr2 = {2, 8, 9, 10, 15};
+        printUnionOf2SortedArray(arr1, arr2);
+    }
+
+    public static void printUnionOf2SortedArray(int[] a, int[] b) {
+        int i = 0;
+        int j = 0;
+        while (i < a.length && j < b.length) {
+            if (i > 0 && a[i] == a[i - 1]) {
+                i++;
+                continue;
+            }
+            if (j > 0 && b[j] == b[j - 1]) {
+                j++;
+                continue;
+            }
+            if (a[i] < b[j]) {
+                System.out.print(a[i] + " ");
+                i++;
+            } else if (a[i] > b[j]) {
+                System.out.print(b[j] + " ");
+                j++;
+            } else if (a[i] == b[j]) {
+                System.out.print(a[i] + " ");
+                i++;
+                j++;
+            }
+        }
+        while (i < a.length) {
+            if (i > 0 && a[i] != a[i - 1]) {
+                System.out.print(a[i] + " ");
+                i++;
+            }
+        }
+        while (j < b.length) {
+            if (j > 0 && b[j] != b[j - 1]) {
+                System.out.print(b[j] + " ");
+                j++;
+            }
+        }
+    }
+}
