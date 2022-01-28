@@ -1,0 +1,25 @@
+public class Main {
+    public static void main(String[] args) {
+        int[] arr1 = {1,1,3,3,3};
+        int[] arr2 = {1,1,1,1,3,5,7};
+        printIntersectionOf2SortedArrays(arr1,arr2);
+    }
+
+    public static void printIntersectionOf2SortedArrays(int[] a, int[] b){
+       int i=0; int j=0;
+       while(i<a.length && j<b.length){
+           if(a[i]<b[j])
+               i++;
+           else if(a[i]>b[j])
+               j++;
+           else{
+               System.out.print(a[i]+" ");
+               i++;
+               while(i< a.length && a[i]==a[i-1])
+                   i++;
+           }
+       }
+
+    }
+
+}
