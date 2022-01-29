@@ -1,0 +1,30 @@
+public class Main {
+    public static void main(String[] args) {
+        int[] arr = {5, 3, 12, 8, 5};
+        naivePartition(arr, 0, arr.length - 1, 4);
+    }
+
+    public static int naivePartition(int[] input, int l, int h, int p) {
+        int[] temp = new int[h-l+1];    // create new temp array
+        int index=0;
+        for(int i=l;i<=h;i++){      // copy all smaller items of array to new array 
+            if(input[i]<p){
+                temp[index]=input[i]; index++;}
+        }
+        for(int i=l;i<=h;i++){      //copy all equal items of array to new array
+            if(input[i]==p){
+                temp[index]=input[i]; index++;}
+        }
+        int res = l+index-1;        //Find the result index.
+        for(int i=l;i<=h;i++){      //copy all greater items of array to new array
+            if(input[i]>p){
+                temp[index]=input[i]; index++;
+            }
+        }
+        for(int i=l;i<=h;i++){      //copy items of temp array to the input array.
+            input[i]=temp[i-l];
+        }
+        return res;
+    }
+}
+
