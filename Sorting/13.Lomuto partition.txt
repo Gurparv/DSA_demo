@@ -1,0 +1,30 @@
+public class Main {
+    public static void main(String[] args) {
+        int[] arr = {10,80,30,90,40,50,70};
+        int res = lomutoPartition(arr,0,6);
+        System.out.println(res);
+        for(int x: arr)
+            System.out.print(x+" ");
+    }
+
+    public static int lomutoPartition(int[] input,int low, int high){
+        int pivot = input[high];
+        int i = low-1;
+       for(int j=low;j<=high-1;j++){
+           if(input[j]<pivot){
+               i++;
+                swap(input,i,j);
+           }
+       }
+       swap(input,i+1,high);
+       return i+1;
+    }
+
+    public static void swap(int[] input,int a,int b){
+        int temp= input[b];
+        input[b]=input[a];
+        input[a]=temp;
+    }
+
+}
+
