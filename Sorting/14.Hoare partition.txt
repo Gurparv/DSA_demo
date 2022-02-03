@@ -1,0 +1,37 @@
+public class Main {
+    public static void main(String[] args) {
+        int[] arr = {5,3,8,4,2,7,1,10};
+        int low= 0;
+        int high= arr.length-1;
+        int res =  hoarePartition(arr,low,high);
+        System.out.println("result: "+res);
+        for(int x: arr)
+            System.out.print(x+" ");
+    }
+
+    public static int hoarePartition(int[] inputArray,int l, int h){
+        int i=l-1;
+        int j=h+1;
+        int pivot = inputArray[l]; //always first element is considered pivot.
+        while(true){
+            do{
+                i++;
+            }while(inputArray[i]<pivot);
+            do{
+                j--;
+            }while(inputArray[j]>pivot);
+            if(i>=j)
+                return j;
+            swap(inputArray,i,j);
+        }
+    }
+
+    public static void swap(int[] arr,int a, int b){
+        int temp = arr[b];
+        arr[b]= arr[a];
+        arr[a]=temp;
+    }
+
+
+}
+
