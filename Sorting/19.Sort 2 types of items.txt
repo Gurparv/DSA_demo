@@ -1,0 +1,32 @@
+public class Main {
+    public static void main(String[] args) {
+        int[] arr = {-40,32,16,90,-8,23,-99};
+        sort2TypesOfItems(arr);
+        for(int x:arr)
+            System.out.print(x+" ");
+    }
+
+    public static void sort2TypesOfItems(int[] arr){
+        int i=-1;
+        int j= arr.length;
+        while(true){
+            do{
+                i++;
+            }while (arr[i]<0);
+            do{
+                j--;
+            }while(arr[j]>=0);
+            if(i>=j)
+                return;
+            swap(arr,i,j);
+        }
+    }
+
+    public static void swap(int[] arr, int a, int b ){
+        int temp=arr[b];
+        arr[b]=arr[a];
+        arr[a]=temp;
+    }
+
+}
+
