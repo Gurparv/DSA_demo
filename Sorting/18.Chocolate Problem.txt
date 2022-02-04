@@ -1,0 +1,23 @@
+import java.util.Arrays;
+
+public class Main {
+    public static void main(String[] args) {
+        int[] arr = {7, 3, 2, 4, 9, 12, 56};
+        int m = 3;
+        int res = chocolateDistributionProblem(arr, m);
+        System.out.println(res);
+    }
+
+    public static int chocolateDistributionProblem(int[] arr, int m) {
+        if (m > arr.length)
+            return -1;
+        Arrays.sort(arr);
+        int res = arr[m - 1] - arr[0];
+        for (int i = 1; i + m - 1 < arr.length; i++) {
+            res = Math.min(res, arr[m + i - 1] - arr[i]);
+        }
+        return res;
+    }
+
+}
+

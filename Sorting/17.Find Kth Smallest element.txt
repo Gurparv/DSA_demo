@@ -1,0 +1,45 @@
+public class Main {
+    public static void main(String[] args) {
+        int[] arr ={10,4,5,8,11,6,26};
+        int k = 5;
+        int index = findKthSmallestItem(arr,k);
+        System.out.println(index);
+        System.out.println("Item = "+arr[index]);
+    }
+
+    public static int findKthSmallestItem(int[] arr,int k){
+        int l= 0;
+        int h= arr.length-1;
+        while(l<=h){
+            int p = lomutoPartition(arr,l,h);
+            if(p==k-1)
+                return p;
+            else if(p>k-1)
+                h=p-1;
+            else
+                l=p+1;
+        }
+        return -1;
+    }
+
+    public static int lomutoPartition(int[] input,int low, int high){
+        int pivot = input[high];
+        int i = low-1;
+        for(int j=low;j<=high-1;j++){
+            if(input[j]<pivot){
+                i++;
+                swap(input,i,j);
+            }
+        }
+        swap(input,i+1,high);
+        return i+1;
+    }
+
+    public static void swap(int[] input,int a,int b){
+        int temp= input[b];
+        input[b]=input[a];
+        input[a]=temp;
+    }
+
+}
+
