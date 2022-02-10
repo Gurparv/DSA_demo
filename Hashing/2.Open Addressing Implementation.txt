@@ -1,0 +1,96 @@
+public class MyHash {
+    private int[] hash;
+    private int capacity, size;
+
+    public MyHash(int capacity) {
+        this.capacity = capacity;
+        this.hash = new int[capacity];
+        for (int i = 0; i < capacity; i++) {
+            hash[i] = -1;
+        }
+        size = 0;  //hashtable is empty when initialized
+    }
+
+    public void printItems() {
+        for (int x : hash)
+            System.out.print(x + " ");
+        System.out.println();
+    }
+
+    public int getHash(int key) {
+        return key % capacity;
+    }
+
+
+    public boolean insert(int key) {
+        if (size == capacity)      //hashtable already full
+            return false;
+        int index = getHash(key);
+        int i = index;
+        /**
+         * stop looping in 3 cases:
+         * 1. you found an empty spot(-1) -> we will insert key there.
+         * 2. you found a deleted spot(-2) -> we will insert key there.
+         * 3. you found key already present in hashtable -> as only unique keys are allowed in hashtable we will not insert key in this case.
+         */
+        while (hash[index] != -1 && hash[index] != 2 && hash[index] != key)
+            index = (index + 1) % capacity;
+        if (hash[index] == key)    //key is already there.
+            return false;
+        else{
+            hash[index] = key;
+            size++;
+            return true;
+        }
+    }
+
+    public boolean search(int key) {
+        int index = getHash(key);
+        int i = index;
+        while (hash[index] != -1) {
+            if (hash[index] == key)
+                return true;
+            index = (index + 1) % capacity;
+            if (i == index)
+                return false;
+        }
+        return false;
+    }
+
+    public boolean delete(int key) {
+        int index = getHash(key);
+        int i = index;
+        while (hash[index] != -1) {
+            if (hash[index] == key) {
+                hash[index] = -2;
+                size--;
+                return true;
+            }
+            index = (index + 1) % capacity;
+            if (index == i)
+                return false;
+        }
+        return false;
+    }
+
+
+}
+
+////////////////////////////////////////////////////////////////////////////////
+
+public class Main{
+    public static void main(String[] args){
+        MyHash m = new MyHash(5);
+        m.printItems();
+        m.insert(10);
+        m.insert(40);
+        m.insert(70);
+        m.insert(20);
+        m.insert(15);
+        m.printItems();
+        System.out.println(m.search(40));
+        System.out.println(m.search(60));
+        System.out.println(m.delete(10));
+        m.printItems();
+    }
+}
