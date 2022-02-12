@@ -1,0 +1,21 @@
+import java.util.HashSet;
+
+public class Main {
+    public static void main(String[] args) {
+        int[] arr1 = {15, 20, 5, 15};
+        int[] arr2 = {15, 15, 15, 20, 10};
+
+        int res = countUnionOf2UnsortedArrays(arr1, arr2);
+        System.out.println(res);
+    }
+
+    public static int countUnionOf2UnsortedArrays(int[] arr1, int[] arr2) {
+        HashSet<Integer> hashSet = new HashSet<>();
+        for (int x : arr1)
+            hashSet.add(x);
+        for (int x : arr2)
+            hashSet.add(x);
+        return hashSet.size();
+    }
+}
+
