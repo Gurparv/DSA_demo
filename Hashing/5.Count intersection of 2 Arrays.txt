@@ -1,0 +1,28 @@
+import java.util.HashSet;
+public class Main {
+    public static void main(String[] args) {
+        int[] arr1 = {10,20,10,30,20};
+        int[] arr2 = {20,10,10,40};
+
+        int res = countIntersectionOf2Arrays(arr1, arr2);
+        System.out.println(res);
+    }
+
+    public static int countIntersectionOf2Arrays(int[] arr1, int[] arr2) {
+        HashSet<Integer> hashSet = new HashSet<>();
+        int count = 0;
+        for (int x : arr1) {
+            hashSet.add(x);
+        }
+        for (int i = 0; i < arr2.length; i++) {
+            if(hashSet.contains(arr2[i])){
+                ++count;
+                hashSet.remove(arr2[i]);
+            }
+
+        }
+        return count;
+    }
+
+}
+
