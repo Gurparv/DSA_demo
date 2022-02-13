@@ -1,0 +1,25 @@
+import java.util.HashSet;
+
+public class Main {
+    public static void main(String[] args) {
+        int[] input = {5,8,6,13,3,-1};
+        int sum =22;
+        boolean res = ifSubarrayWithGivenSum(input,sum);
+        System.out.println(res);
+    }
+
+    public static boolean ifSubarrayWithGivenSum(int[] arr1, int sum){
+        HashSet<Integer> hashSet=  new HashSet<>();
+        int preSum = 0;
+        for(int x: arr1){
+            preSum+=x;
+            if( hashSet.contains(preSum-sum) )
+                return true;
+            if(preSum==sum)
+                return true;
+            hashSet.add(x);
+        }
+        return false;
+    }
+}
+
