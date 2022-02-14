@@ -1,0 +1,28 @@
+import java.util.Arrays;
+
+public class Main {
+    public static void main(String[] args) {
+        String s = "geeksforgeeks";
+        int res = LeftMostNonRepeatingChar(s);
+        System.out.println(res);
+    }
+
+    public static int LeftMostNonRepeatingChar(String s) {
+        final int CHAR = 256;
+        int[] arr = new int[256];
+        Arrays.fill(arr, -1);
+        for (int i = 0; i < s.length(); i++) {
+            if (arr[s.charAt(i)] == -1)
+                arr[s.charAt(i)] = i;
+            else
+                arr[s.charAt(i)] = -2;
+        }
+        int res = Integer.MAX_VALUE;
+        for (int i = 0; i < arr.length; i++) {
+            if (arr[i] > 0)
+                res = Math.min(res, arr[i]);
+        }
+        return (res == Integer.MAX_VALUE) ? -1 : res;
+    }
+}
+
