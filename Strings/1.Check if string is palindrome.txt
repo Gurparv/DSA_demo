@@ -1,0 +1,17 @@
+public class Main {
+    public static void main(String[] args) {
+        String s = "geeks";
+        boolean res = isPalindrome(s);
+        System.out.println(res);
+    }
+
+    public static boolean isPalindrome(String input) {
+        int half = input.length() / 2;
+        for (int i = 0, j = input.length() - 1; i < half; i++, j--) {
+            if (input.charAt(i) != input.charAt(j))
+                return false;
+        }
+        return true;
+    }
+}
+
