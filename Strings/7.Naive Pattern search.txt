@@ -1,0 +1,22 @@
+public class Main {
+    public static void main(String[] args) {
+        String text = "ABCABCD";
+        String s1 = "ABCD";
+        naivePatternSearching(s1, text);
+    }
+
+    public static void naivePatternSearching(String s1, String text) {
+        int n = text.length();
+        int m = s1.length();
+        for (int i = 0; i <= n - m; i++) {
+            int j;
+            for (j = 0; j < m; j++)
+                if (s1.charAt(j) != text.charAt(i + j))
+                    break;
+            if (j == m) {
+                System.out.print(i + " ");
+            }
+        }
+    }
+}
+
