@@ -1,0 +1,30 @@
+public class Main {
+    public static void main(String[] args) {
+        String s = "i love anime";
+        printReverseWordsInAString(s);
+    }
+
+    public static void printReverseWordsInAString(String s){
+        int n = s.length()-1;
+        StringBuilder tempString = new StringBuilder();
+        while(n>=0){
+            if(s.charAt(n)==' '){
+                reverseWordsCharacters(tempString);
+                tempString.delete(0,tempString.length());
+                System.out.print(" ");
+            }else{
+            tempString.append(s.charAt(n));}
+            --n;
+        }
+        reverseWordsCharacters(tempString);
+    }
+
+    public static void reverseWordsCharacters(StringBuilder s){
+        int n = s.length()-1;
+       while(n>=0){
+           System.out.print(s.charAt(n--));
+       }
+    }
+
+}
+
