@@ -1,0 +1,46 @@
+public class Main {
+    public static void main(String[] args) {
+        String text = "ABCABCDABCD";
+        String s1 = "ABCD";
+        rabinKarpAlgoForPatternSearching(text,s1);
+    }
+
+    public static void rabinKarpAlgoForPatternSearching(String text, String pat) {
+        int N = text.length();
+        int M = pat.length();
+        final int d = 256;
+        final int q = 101;
+
+        //compute hash
+        int h = 1;
+        for (int i = 1; i <= M-1; i++) {
+            h = (h * d) % q;
+        }
+
+        //compute p and t
+        int p = 0, t = 0;
+        for (int i = 0; i < M; i++) {
+            p = (p * d + pat.charAt(i)) % q;
+            t = (t * d + text.charAt(i)) % q;
+        }
+
+        for (int i = 0; i <= (N - M); i++) {
+            if (p == t) {
+                boolean flag = true;
+                for (int j = 0; j < M; j++)
+                    if (text.charAt(i + j) != pat.charAt(j)) {
+                        flag = false;
+                        break;
+                    }
+                if (flag)
+                    System.out.print(i + " ");
+            }
+            if (i < N - M) {
+                t = ((d * (t - text.charAt(i) * h)) + text.charAt(i + M)) % q;
+                if (t < 0)
+                    t = t + q;
+            }
+        }
+    }
+}
+
