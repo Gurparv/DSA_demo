@@ -1,0 +1,36 @@
+public class Main {
+    public static void main(String[] args) {
+        int[][] inputMatrix =
+                {
+                        {1, 2, 3, 4},
+                        {5, 6, 7, 8},
+                        {9, 10, 11, 12},
+                        {13, 14, 15, 16}
+                };
+
+        Transpose(inputMatrix);
+        printMatrix(inputMatrix);
+    }
+
+    public static void Transpose(int[][] input) {
+        int temp;
+        for (int row = 0; row < input.length; row++) {
+            for (int col = row + 1; col < input[row].length; col++) {
+                temp = input[row][col];
+                input[row][col] = input[col][row];
+                input[col][row] = temp;
+            }
+        }
+    }
+
+    public static void printMatrix(int[][] input){
+        for(int i=0;i<input.length;i++){
+            for(int j=0;j<input[i].length;j++){
+                System.out.print(input[i][j]+" ");
+            }
+            System.out.println();
+        }
+    }
+
+}
+
