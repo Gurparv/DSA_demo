@@ -1,0 +1,32 @@
+public class Node {
+
+    private int data;
+    public Node next;
+
+    public Node(int data) {
+        this.data = data;
+        this.next = null;   //optional as by default value of any object is null.
+    }
+
+    public int getData(){
+        return this.data;
+    }
+
+}
+
+////////////////////////////////////////////////////////////////////////////////
+
+public class Main {
+    public static void main(String[] args) {
+
+        Node head = new Node(10);
+        Node item2 = new Node(20);
+        Node tail = new Node(50);
+
+        head.next = item2;
+        item2.next = tail;
+        tail.next = null;
+    }
+
+}
+
