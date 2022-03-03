@@ -1,0 +1,53 @@
+public class Node {
+    private int data;
+    Node next;
+    Node previous;
+
+    public Node(int data) {
+        this.data = data;
+        this.next = null;
+        this.next = null;
+    }
+
+    public int getData() {
+        return this.data;
+    }
+}
+////////////////////////////////////////////////////////////////////////////////
+public class Main {
+    public static void main(String[] args) {
+
+        Node head = new Node(10);
+        Node temp1 = new Node(20);
+        Node temp2 = new Node(30);
+
+        head.next = temp1;
+        temp1.next = temp2;
+        temp1.previous = head;
+        temp2.previous = temp1;
+
+        printLinkedList(head);
+        head = deleteHeadOfDoublyLinkedList(head);
+        printLinkedList(head);
+    }
+
+    public static void printLinkedList(Node head) {
+        Node current = head;
+        while (current != null) {
+            System.out.print(current.getData() + " ");
+            current = current.next;
+        }
+        System.out.println();
+    }
+
+    public static Node deleteHeadOfDoublyLinkedList(Node head) {
+        if (head == null || head.next == null)
+            return head;
+        Node temp = head.next;
+        temp.previous = null;
+        head.next = null;
+        return temp;
+    }
+
+
+}
