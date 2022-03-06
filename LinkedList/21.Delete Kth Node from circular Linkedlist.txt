@@ -1,0 +1,51 @@
+public class Node {
+    public int data;
+    public Node next;
+
+    public Node(int data) {
+        this.data = data;
+        this.next = null;
+    }
+
+}
+////////////////////////////////////////////////////////////////////////////////
+public class Main {
+    public static void main(String[] args) {
+        Node head = new Node(10);
+        Node node2 = new Node(20);
+        Node node3 = new Node(30);
+        Node node4 = new Node(40);
+
+        head.next = node2;
+        node2.next = node3;
+        node3.next = node4;
+        node4.next = head;
+
+        head = printCircularLinkedList(head);
+        head = deleteKthNodeOfCircularLinkedList(head, 4);
+        head = printCircularLinkedList(head);
+    }
+
+    public static Node printCircularLinkedList(Node head) {
+        if (head == null) return head;
+        Node curr = head;
+        do {
+            System.out.print(curr.data + " ");
+            curr = curr.next;
+        } while (curr != head);
+        System.out.println();
+        return head;
+    }
+
+    public static Node deleteKthNodeOfCircularLinkedList(Node head, int node) {
+        int count = 1;
+        Node curr = head;
+        while (count != node - 1) {
+            curr = curr.next;
+            count++;
+        }
+        curr.next = curr.next.next;
+        return head;
+    }
+
+}
