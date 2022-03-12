@@ -1,0 +1,88 @@
+public class TwoStacks {
+    private int[] arr;
+    private int size1;
+    private int size2;
+    private int top1 = 0;
+    private int top2 = 0;
+
+
+    public TwoStacks(int[] arr) {
+        this.arr = arr;
+        this.size1 = (arr.length / 2) + 1;
+        this.size2 = arr.length;
+        this.top1 = 0;
+        this.top2 = size1;
+    }
+
+    public void push1(int x) {
+        if (top1 >= size1)
+            return;
+        arr[top1++] = x;
+    }
+
+    public void push2(int x) {
+        if (top2 >= size2)
+            return;
+        arr[top2++] = x;
+    }
+
+    public int pop1() {
+        if (top1 < 0)
+            return -1;
+        return arr[top1--];
+    }
+
+    public int pop2() {
+        if (top2 < 0)
+            return -1;
+        return arr[top2--];
+    }
+
+    public int size1() {
+        return this.size1;
+    }
+
+    public int size2() {
+        return this.size2;
+    }
+
+    public int top1() {
+        return this.top1;
+    }
+
+    public int top2() {
+        return this.top2;
+    }
+}
+////////////////////////////////////////////////////////////////////////////////
+public class Main {
+    public static void main(String[] args) {
+
+        int[] arr = new int[10];
+        TwoStacks ts = new TwoStacks(arr);
+
+        printArray(arr);
+        ts.push1(10);
+        ts.push2(20);
+        printArray(arr);
+        ts.push1(20);
+        ts.push2(30);
+        printArray(arr);
+        ts.push1(30);
+        ts.push2(40);
+        printArray(arr);
+        ts.pop1();
+        ts.pop2();
+        printArray(arr);
+        ts.push1(50);
+        ts.push2(50);
+        printArray(arr);
+    }
+
+    public static void printArray(int[] arr){
+        for(Integer i : arr){
+            System.out.print(i+" ");
+        }
+        System.out.println();
+    }
+}
