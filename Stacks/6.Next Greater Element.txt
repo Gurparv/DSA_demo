@@ -1,0 +1,54 @@
+import java.util.ArrayDeque;
+import java.util.ArrayList;
+import java.util.Deque;
+
+public class Main {
+
+    private static Deque<Integer> myStack;
+
+    public static void main(String[] args) {
+        int[] arr = {5, 15, 10, 8, 6, 12, 9, 18};
+        int[] arr2 = {10,15,20,25};
+        int[] arr3 = {25,20,15,10};
+        myStack = new ArrayDeque<>(arr.length);
+        ArrayList<Integer> temp = new ArrayList<>(arr.length);
+        printNextGreaterElement(arr, temp);
+
+
+        myStack = new ArrayDeque<>(arr2.length);
+        temp = new ArrayList<>(arr2.length);
+        printNextGreaterElement(arr2, temp);
+
+        myStack = new ArrayDeque<>(arr3.length);
+        temp = new ArrayList<>(arr3.length);
+        printNextGreaterElement(arr3, temp);
+    }
+
+    public static void printNextGreaterElement(int[] arr, ArrayList res) {
+        res.add(-1);
+        myStack.push(arr[arr.length - 1]);
+        for (int i = arr.length - 2; i >= 0; i--) {
+            if (arr[i] > myStack.peek()) {
+                myStack.pop();
+                while (!(myStack.isEmpty()) && arr[i] > myStack.peek())
+                    myStack.pop();
+                if (myStack.isEmpty())
+                    res.add(-1);
+                else
+                    res.add(myStack.peek());
+            } else {
+                res.add(myStack.peek());
+            }
+            myStack.push(arr[i]);
+        }
+
+        //print res[] arr in reverse order:
+        for (int i = res.size() - 1; i >= 0; i--)
+            System.out.print(res.get(i) + " ");
+        System.out.println();
+        res.clear();
+    }
+
+
+}
+
