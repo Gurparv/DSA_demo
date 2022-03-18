@@ -1,0 +1,82 @@
+public class MyQueue {
+    private int cap;
+    private int[] array;
+    private int size = 0;
+
+    public MyQueue(int cap) {
+        this.cap = cap;
+        array = new int[cap];
+        this.size = 0;
+    }
+
+    public void enqueue(int item) {
+        if (isFull())
+            return;
+        array[size] = item;
+        size++;
+
+    }
+
+    public void dequeue() {
+        if (isEmpty())
+            return;
+        for (int i = 0; i < size - 1; i++)
+            array[i] = array[i + 1];
+        size--;
+    }
+
+    public boolean isFull() {
+        return size == cap;
+    }
+
+    public boolean isEmpty() {
+        return size == 0;
+    }
+
+    public int getFront() {
+        if (isEmpty())
+            return -1;
+        else
+            return 0;
+    }
+
+    public int getRear() {
+        if (isEmpty())
+            return -1;
+        else
+            return size - 1;
+    }
+
+    public int size() {
+        return this.size;
+    }
+
+    public void printQueue() {
+        for (int i = 0; i < size; i++)
+            System.out.print(array[i] + " ");
+        System.out.println();
+    }
+
+}
+////////////////////////////////////////////////////////////////////////////////
+
+public class Main {
+    public static void main(String[] args) {
+
+        MyQueue queue = new MyQueue(10);
+        queue.enqueue(10);
+        queue.enqueue(20);
+        queue.enqueue(30);
+        queue.printQueue();
+        queue.dequeue();
+        queue.printQueue();
+
+        System.out.println("-----------");
+        System.out.println(queue.size());
+        System.out.println(queue.getFront());
+        System.out.println(queue.getRear());
+        System.out.println(queue.isEmpty());
+        System.out.println(queue.isFull());
+    }
+
+}
