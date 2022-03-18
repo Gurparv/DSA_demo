@@ -1,0 +1,58 @@
+public class Node {
+    int value;
+    Node next;
+
+    public Node(int value) {
+        this.value = value;
+        this.next = null;
+    }
+
+}
+////////////////////////////////////////////////////////////////////////////////
+
+public class Queue {
+    Node front, rear;
+    int size;
+
+    Queue() {
+        front = rear = null;
+    }
+
+    public void enqueue(int x) {
+        size++;
+        Node n = new Node(x);
+        if (front == null) {
+            front = rear = n;
+            return;
+        }
+        rear.next = n;
+        rear = n;
+    }
+
+    public void dequeue() {
+        if (front == null)
+            return;
+        size--;
+        front = front.next;
+        if (front == null)
+            rear = null;
+    }
+
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+
+
+public class Main {
+    public static void main(String[] args) {
+
+        Queue q = new Queue();
+        q.enqueue(10);
+        q.enqueue(20);
+        q.enqueue(30);
+        q.enqueue(40);
+        q.dequeue();
+    }
+
+}
