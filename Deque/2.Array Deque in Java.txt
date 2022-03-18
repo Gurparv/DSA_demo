@@ -1,0 +1,27 @@
+import java.util.ArrayDeque;
+import java.util.Deque;
+
+public class Main {
+    public static void main(String[] args) {
+
+        Deque<Integer> d = new ArrayDeque<>();
+        //Array Deque used as Deque;
+        d.offerFirst(10);
+        d.offerLast(20);
+        d.offerLast(200);
+        d.pollFirst();
+        d.peekLast();
+
+        //Array Deque used as stack;
+        d.add(30);
+        d.pop();
+        d.peek();
+
+        //Array deque used as Queue;
+        d.offer(40);
+        d.offer(50);
+        d.poll();
+    }
+
+}
+
