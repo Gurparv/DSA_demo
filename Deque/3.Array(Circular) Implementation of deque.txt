@@ -1,0 +1,70 @@
+public class MyDeque {
+    private int cap;
+    private int[] d;
+    private int size;
+    private int front;
+    private int rear;
+
+
+    public MyDeque(int cap) {
+        this.cap = cap;
+        d = new int[cap];
+        front = rear = -1;
+        size = 0;
+    }
+
+    public void insertFront(int x) {
+        if (isFull())
+            return;
+        //formula to find front
+        front = ((front - 1) + cap) % cap;
+        d[front] = x;
+        size++;
+
+    }
+
+    public void insertRear(int x) {
+        if (isFull())
+            return;
+        d[++rear] = x;
+        size++;
+    }
+
+    public void deleteFront() {
+        if (isEmpty())
+            return;
+        front++;
+        size--;
+    }
+
+    public void deleteRear() {
+        if (isEmpty())
+            return;
+        --rear;
+        --size;
+    }
+
+    public int getFront() {
+        return front;
+    }
+
+    public int getRear() {
+        return rear;
+    }
+
+    public int getSize() {
+        return this.size;
+    }
+
+    public boolean isFull() {
+        //circular Array formula used to find if front==rear.
+        return ((rear + 1) % cap) - 1 == front;
+    }
+
+    public boolean isEmpty() {
+        return size == 0;
+    }
+
+}
+////////////////////////////////////////////////////////////////////////////////
+
