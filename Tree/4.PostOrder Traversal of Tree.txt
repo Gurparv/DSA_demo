@@ -1,0 +1,38 @@
+public class Node {
+    int key ;
+    Node left;
+    Node right;
+
+    public Node(int x){
+        this.key = x;
+        this.left = null;
+        this.right = null;
+    }
+}
+////////////////////////////////////////////////////////////////////////////////
+
+public class Main {
+    public static void main(String[] args) {
+
+        //Creating a Tree:
+        Node root = new Node(10);
+        root.left = new Node(20);
+        root.right = new Node(30);
+        root.right.left = new Node(40);
+        root.right.right = new Node(50);
+
+        //PostOrder 20 40 50 30 10
+        printPostOrderTraversal(root);
+
+    }
+
+    public static void printPostOrderTraversal(Node node) {
+        if (node != null) {
+            printPostOrderTraversal(node.left);
+            printPostOrderTraversal(node.right);
+            System.out.print(node.key + " ");
+        }
+    }
+
+
+}
