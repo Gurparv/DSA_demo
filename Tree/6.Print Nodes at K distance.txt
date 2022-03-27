@@ -1,0 +1,40 @@
+public class Node {
+    int key ;
+    Node left;
+    Node right;
+
+    public Node(int x){
+        this.key = x;
+        this.left = null;
+        this.right = null;
+    }
+}
+////////////////////////////////////////////////////////////////////////////////
+public class Main {
+    public static void main(String[] args) {
+
+        //Tree1
+        Node root = new Node(10);
+        root.left = new Node(6);
+        root.right = new Node(8);
+        root.right.right = new Node(7);
+        root.right.right.left = new Node(11);
+        root.right.right.right = new Node(12);
+
+        printNodeAtDistance(root, 3);
+    }
+
+    public static void printNodeAtDistance(Node root, int k) {
+        if (root == null)
+            return;
+        if (k == 0) {
+            System.out.println(root.key+" ");
+        }
+        else{
+            printNodeAtDistance(root.left,k-1);
+            printNodeAtDistance(root.right,k-1);
+        }
+    }
+
+
+}
