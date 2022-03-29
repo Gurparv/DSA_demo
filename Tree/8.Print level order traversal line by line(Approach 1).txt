@@ -1,0 +1,53 @@
+public class Node {
+    int key;
+    Node left;
+    Node right;
+
+    public Node(int data) {
+        this.key = data;
+        this.left = null;
+        this.right = null;
+    }
+}
+////////////////////////////////////////////////////////////////////////////////
+
+import java.util.LinkedList;
+import java.util.Queue;
+
+public class Main {
+    public static void main(String[] args) {
+        Node root = new Node(10);
+        root.left = new Node(15);
+        root.right = new Node(20);
+        root.left.left = new Node(30);
+        root.right.left = new Node(40);
+        root.right.right = new Node(50);
+        root.right.left.left = new Node(70);
+        root.right.left.right = new Node(80);
+
+        printLevelOrderTraversalLineByLine1(root);
+
+    }
+
+    public static void printLevelOrderTraversalLineByLine1(Node root) {
+        if (root == null)
+            return;
+        Queue<Node> q = new LinkedList<>();
+        q.add(root);
+        q.add(null);
+        while (q.size() > 1) {
+            Node curr = q.poll();
+            if (curr == null) {
+                System.out.println();
+                q.add(null);
+                continue;
+            }
+            System.out.print(curr.key + " ");
+            if (curr.left != null)
+                q.add(curr.left);
+            if (curr.right != null)
+                q.add(curr.right);
+        }
+    }
+
+}
