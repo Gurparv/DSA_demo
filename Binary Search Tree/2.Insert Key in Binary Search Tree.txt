@@ -1,0 +1,64 @@
+public class Node {
+    int key;
+    Node left;
+    Node right;
+
+    public Node(int data) {
+        key = data;
+        left = null;
+        right = null;
+    }
+
+}
+////////////////////////////////////////////////////////////////////////////////
+
+public class Main {
+    public static void main(String[] args) {
+        //create a Binary search tree
+        Node root = new Node(15);
+        root.right = new Node(20);
+        root.right.left = new Node(18);
+        root.right.right = new Node(80);
+        root.right.left.left = new Node(16);
+        root.left = new Node(5);
+        root.left.left = new Node(3);
+
+        //search key in BST
+        insert(root, 19);
+        insertIterative(root,23);
+
+    }
+
+    public static Node insert(Node root, int x) {
+        if (root == null) {
+            return new Node(x);
+        }
+        if (root.key < x)
+            root.right = insert(root.right, x);
+        else
+            root.left = insert(root.left, x);
+        return root;
+    }
+
+    public static Node insertIterative(Node root, int x) {
+        Node n = new Node(x);
+        Node parent = null;
+        Node curr = root;
+        while (curr != null) {
+            parent = curr;
+            if (curr.key < x)
+                curr = curr.right;
+            else if (curr.key > x)
+                curr = curr.left;
+            else
+                return root;
+        }
+        if (parent == null)
+            return n;
+        if (parent.key > x)
+            parent.left = n;
+        else
+            parent.right = n;
+        return root;
+    }
+}
