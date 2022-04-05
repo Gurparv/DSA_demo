@@ -1,0 +1,57 @@
+public class Node {
+    int key;
+    Node left;
+    Node right;
+
+    public Node(int data) {
+        key = data;
+        left = null;
+        right = null;
+    }
+
+}
+////////////////////////////////////////////////////////////////////////////////
+public class Main {
+    public static void main(String[] args) {
+        //create a Binary search tree
+        Node root = new Node(15);
+        root.right = new Node(20);
+        root.right.left = new Node(18);
+        root.right.right = new Node(80);
+        root.right.left.left = new Node(16);
+        root.left = new Node(5);
+        root.left.left = new Node(3);
+
+        //search key in BST
+        boolean res = search(root, 19);
+        System.out.println(res);
+
+        boolean res2 = searchIterative(root, 19);
+        System.out.println(res2);
+    }
+
+    public static boolean search(Node root, int x) {
+        if (root == null)
+            return false;
+        if (root.key == x)
+            return true;
+        else if (root.key > x) {
+            return search(root.left, x);
+        } else {
+            return search(root.right, x);
+        }
+    }
+
+    public static boolean searchIterative(Node root, int x) {
+        while (root != null) {
+            if (root.key == x)
+                return true;
+            else if (root.key < x)
+                root = root.right;
+            else
+                root = root.left;
+        }
+        return false;
+    }
+}
+
