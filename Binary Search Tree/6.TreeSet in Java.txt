@@ -1,0 +1,27 @@
+import java.util.Iterator;
+import java.util.TreeSet;
+
+public class Main {
+    public static void main(String[] args) {
+
+        //Declaring and Initializing TreeSet.
+        TreeSet<String> treeSet = new TreeSet<>();
+        treeSet.add("zzz");
+        treeSet.add("tester");
+        treeSet.add("bug");
+        System.out.println(treeSet);
+
+        //Iterate TreeSet
+        Iterator<String> iterator= treeSet.iterator(); //treeSet.iterator() returns a iterator object
+        while(iterator.hasNext()){
+            System.out.println(iterator.next());
+        }
+
+        System.out.println("----------");
+
+        //Another way to traverse
+        for(String s: treeSet)
+            System.out.println(s);
+    }
+}
+
