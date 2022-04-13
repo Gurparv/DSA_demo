@@ -1,0 +1,32 @@
+public class MinHeap {
+   int cap;
+   int size;
+   int[] arr;
+
+   public MinHeap(int cap){
+      this.cap = cap;
+      this.size = 0;
+      this.arr = new int[cap];
+   }
+
+   public int left(int index){
+       return (2*index+1);
+   }
+
+   public int right(int index){
+        return (2*index+2);
+    }
+
+    public int parent(int index){
+       return (index-1)/2;
+    }
+}
+////////////////////////////////////////////////////////////////////////////////
+public class Main {
+    public static void main(String[] args) {
+
+        MinHeap minHeap = new MinHeap(10);
+
+    }
+}
+
