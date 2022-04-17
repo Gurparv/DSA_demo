@@ -1,0 +1,108 @@
+public class MinHeap {
+    int cap;
+    int size;
+    int[] arr;
+
+    public MinHeap(int cap) {
+        this.cap = cap;
+        this.size = 0;
+        this.arr = new int[cap];
+    }
+
+    public int left(int index) {
+        return (2 * index + 1);
+    }
+
+    public int right(int index) {
+        return (2 * index + 2);
+    }
+
+    public int parent(int index) {
+        return (index - 1) / 2;
+    }
+
+    public void insert(int x) {
+        if (size == cap)
+            return;
+        size++;
+        arr[size - 1] = x;
+        for (int i = size - 1; i != 0 && arr[parent(i)] > arr[i]; ) {
+            swap(arr[i], arr[parent(i)]);
+            i = parent(i);
+        }
+    }
+
+    public void swap(int a, int b) {
+        int temp = a;
+        a = b;
+        b = temp;
+    }
+
+    //fixes a min binary heap.
+    public void minHeapify(int i) {
+        int left = left(i); //assigns left child index of input i
+        int right = right(i); //assigns right child index of input i
+        int smallest = i;
+        if (left < size && arr[left] < arr[i])
+            smallest = left;
+        if (right < size && arr[right] < arr[i])
+            smallest = right;
+        if (smallest != i) {
+            swap(arr[i], arr[smallest]);
+            minHeapify(smallest);
+        }
+    }
+
+    /**
+     * Its a O(1) operation as we know in MinHeap the smallest item is always root which is present at index 0.
+     * <p>
+     * Use case - when in docter's queue the first patient receives treatment can go home.
+     */
+    public int getMin() {
+        if (size == 0)
+            return Integer.MAX_VALUE;
+        if (size == 1) {
+            size--;
+            return arr[0];
+        } else {
+            swap(arr[0], arr[size - 1]);
+            size--;
+            minHeapify(0);
+            return arr[size];
+        }
+    }
+
+    public void decreaseKey(int i, int x) {
+        arr[i] = x;
+        while (i != 0 || arr[parent(i)] < arr[i]) {
+            swap(arr[parent(i)], arr[i]);
+            i = parent(i);
+        }
+    }
+
+    public void delete(int i) {
+        decreaseKey(i, Integer.MIN_VALUE);
+        getMin();
+    }
+
+    public void buildHeap() {
+        for (int i = (size - 2) / 2; i >= 0; i--)
+            minHeapify(i);
+    }
+
+}
+
+//////////////////////////////////////////////////////////////////////////////////
+public class Main {
+    public static void main(String[] args) {
+
+        MinHeap minHeap = new MinHeap(10);
+        minHeap.insert(10);
+        minHeap.insert(20);
+        minHeap.insert(15);
+        minHeap.insert(40);
+        minHeap.insert(50);
+
+    }
+}
+
