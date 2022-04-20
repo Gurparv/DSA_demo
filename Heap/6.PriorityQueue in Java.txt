@@ -1,0 +1,19 @@
+import java.util.PriorityQueue;
+
+public class Main {
+    public static void main(String[] args) {
+
+        //Heaps are implemented in PriorityQueue DS and by default it creates a Min heap
+        PriorityQueue<Integer> pq = new PriorityQueue<>();
+        pq.add(20);
+        pq.add(10);
+        pq.add(15);
+
+        System.out.println(pq.peek());
+        System.out.println(pq.poll());
+        System.out.println(pq.peek());
+
+    }
+
+}
+
