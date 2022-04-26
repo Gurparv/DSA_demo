@@ -1,0 +1,22 @@
+import java.util.ArrayList;
+
+public class Main {
+    public static void main(String[] args) {
+        System.out.println("Hello world");
+        int totalVertices = 5;
+        ArrayList<ArrayList<Integer>> graph = new ArrayList<>(totalVertices);
+        for(int i=0;i<graph.size();i++)
+            graph.add(new ArrayList<Integer>());
+        addVerticles(graph,0,1);
+        addVerticles(graph,0,2);
+        addVerticles(graph,1,2);
+        addVerticles(graph,1,3);
+    }
+
+    public static void addVerticles(ArrayList<ArrayList<Integer>> arrayList,int u, int v){
+        arrayList.get(v).add(u);
+        arrayList.get(u).add(v);
+    }
+
+}
+
