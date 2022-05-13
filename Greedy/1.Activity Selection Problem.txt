@@ -1,0 +1,45 @@
+public class Activity {
+    int start;
+    int finish;
+
+    public Activity(int s, int f) {
+        this.start = s;
+        this.finish = f;
+    }
+}
+////////////////////////////////////////////////////////////////////////////////
+import java.util.Comparator;
+
+public class MyCmp implements Comparator<Activity> {
+    public int compare(Activity a1,Activity a2){
+        return a1.finish-a2.finish;
+    }
+
+}
+////////////////////////////////////////////////////////////////////////////////
+import java.util.Arrays;
+
+public class Main {
+    public static void main(String[] args) {
+
+        Activity a1 = new Activity(12,25);
+        Activity a2 = new Activity(10,20);
+        Activity a3 = new Activity(20,30);
+        Activity[] arr = {a1,a2,a3};
+        System.out.println(maxActivity(arr));
+    }
+
+    public static int maxActivity(Activity[] activities){
+        Arrays.sort(activities,new MyCmp());
+        int res=1;
+        int prev=0;
+        for(int curr=1;curr<activities.length;curr++){
+            if(activities[curr].start>=activities[prev].finish){
+                res++;
+                prev=curr;
+            }
+        }
+        return res;
+    }
+}
+
