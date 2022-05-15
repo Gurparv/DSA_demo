@@ -1,0 +1,52 @@
+public class Item implements Comparable<Item> {
+    int weight;
+    int value;
+
+    public Item(int weight, int value) {
+        this.weight = weight;
+        this.value = value;
+    }
+
+    //Sorts in decreasing order based on ratio of value/wt
+    @Override
+    public int compareTo(Item o) {
+        return  (o.value / o.weight)-(this.value / this.weight) ;
+    }
+}
+//////////////////////////////////////////////////////////////////////////////
+import java.util.Arrays;
+
+public class Main {
+    public static void main(String[] args) {
+        Item i1 = new Item(10, 60);
+        Item i2 = new Item(40, 40);
+        Item i3 = new Item(20, 100);
+        Item i4 = new Item(30, 120);
+        Item[] itemArr = {i1, i2, i3, i4};
+        int w = 50;
+        System.out.println(fracKnapSack(itemArr, w));
+    }
+
+    public static double fracKnapSack(Item[] arr, int w) {
+        for (Item i : arr)
+            System.out.print("[" + i.weight + "|" + i.value + "]" + " ");
+        Arrays.sort(arr);
+        System.out.println();
+        for (Item i : arr)
+            System.out.print("[" + i.weight + "|" + i.value + "]" + " ");
+        System.out.println();
+        double res = 0.0;
+        for (Item i : arr) {
+            if (w >= i.weight) {
+                res += i.value;
+                w -= i.weight;
+            } else {
+                res += i.value * (double) w / (double) i.weight;
+                break;
+            }
+            System.out.println("res-->"+res+" "+"w left-->"+w);
+        }
+        return res;
+    }
+}
+
