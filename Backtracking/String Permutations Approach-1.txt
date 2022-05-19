@@ -1,0 +1,49 @@
+import java.util.*;
+import java.lang.*;
+
+class Gfg {
+    public static void main(String[] args) {
+        char[] c = {'A','B','C'};
+        printPermutations(c, 0, c.length - 1);
+    }
+
+    public static void swap(char[] s, int a, int b) {
+        char temp = s[a];
+        s[a] = s[b];
+        s[b] = temp;
+    }
+
+    public static void printPermutations(char[] s, int l, int r) {
+        boolean[] tracker = new boolean[s.length];
+        ArrayList<Character> dataStruct = new ArrayList<>(s.length);
+        for (int i = 0; i <= r; i++) {
+            swap(s, l, i);
+            dataStruct.add(s[0]);
+            tracker[0] = true;
+            recursive(s, 1, tracker, dataStruct);
+            dataStruct.remove(dataStruct.size()-1);
+            swap(s, l, i);
+            //System.out.println("--"+s);
+        }
+    }
+
+    public static void recursive(char[] s, int last, boolean[] tracker, ArrayList<Character> dataStruct) {
+        if (dataStruct.size() == s.length ){
+            System.out.println(dataStruct.toString());
+            return;
+        } else {
+            for (int i = 1; i < tracker.length; i++) {
+                if (tracker[i] == false) {
+                    tracker[i] = true;
+                    dataStruct.add(s[i]);
+                    recursive(s, i+1, tracker, dataStruct);
+                    tracker[i] = false;
+                    dataStruct.remove(dataStruct.size()-1);
+                }
+            }
+        }
+
+
+    }
+}
+
