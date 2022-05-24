@@ -1,0 +1,73 @@
+public class Main {
+    public static void main(String[] args) {
+        int[][] maze = {
+                {1, 0, 0, 0},
+                {1, 1, 0, 0},
+                {0, 1, 0, 0},
+                {1, 1, 1, 1}
+/*
+                {1, 0, 0},
+                {0, 1, 1},
+                {1, 1, 1}
+*/
+        };
+        int[][] toPrintMaze = new int[maze.length][maze[0].length] ;
+        for(int i=0;i<maze.length;i++){
+            for(int j=0;j<maze[i].length;j++){
+                toPrintMaze[i][j]=0;
+            }
+        }
+        toPrintMaze[0][0]=1;    //starting point is 1,1
+        System.out.println(ratInMaze(maze, 0, 0, 0,toPrintMaze));
+    }
+
+    public static int ratInMaze(int[][] maze, int i, int j, int status,int[][] toPrintMaze) {
+        if (isFinished(maze, i, j)) {
+            //System.out.println("IsFinnished");
+            status = 1;
+            //adding final cheese coordinate
+            printResMaze(toPrintMaze);
+            return status;
+        }
+        if (!canMoveRight(maze, i, j) && !canMoveDown(maze, i, j)) {
+            //System.out.println("Cant move anywhere" + i + "-" + j);
+            status = -1;
+            return status;
+        }
+        if (status == 1 || status == -1) {
+            //System.out.println("Already got ans");
+            return status;
+        } else {
+            //System.out.println("currently at " + i + "--" + j);
+            if (canMoveRight(maze, i, j)){
+                toPrintMaze[i][j+1]=1;
+                status = ratInMaze(maze, i, j + 1, 0, toPrintMaze);}
+            else{
+                toPrintMaze[i+1][j]=1;
+                status = ratInMaze(maze, i + 1, j, 0, toPrintMaze);}
+        }
+        return status;
+    }
+
+    public static boolean isFinished(int[][] maze, int currI, int currJ) {
+        return maze.length - 1 == currI && maze[currI].length - 1 == currJ;
+    }
+
+    public static boolean canMoveRight(int[][] maze, int currI, int currJ) {
+        return maze[currI].length > currJ + 1 && maze[currI][currJ + 1] != 0;
+    }
+
+    public static boolean canMoveDown(int[][] maze, int currI, int currJ) {
+        return maze.length > currI + 1 && maze[currI + 1][currJ] != 0;
+    }
+
+    public static void printResMaze(int[][] maze) {
+        for(int i=0;i<maze.length;i++){
+            for(int j=0;j<maze[i].length;j++){
+                System.out.print(maze[i][j]+" ");
+            }
+            System.out.println();
+        }
+    }
+}
+
