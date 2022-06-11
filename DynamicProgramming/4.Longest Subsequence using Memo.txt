@@ -1,0 +1,35 @@
+public class Main {
+    static Integer[][] memo;
+
+    public static void main(String[] args) {
+        String s1 = "AXYZ";
+        String s2 = "BAZ";
+        memo = new Integer[4][3];
+        //Initialize array with some default values which are not possible in our solution.
+        for (int i = 0; i < memo.length; i++)
+            for (int j = 0; j < memo[i].length; j++)
+                memo[i][j] = -1;
+
+
+        int res = longestSubsequence(s1, s2, s1.length() - 1, s2.length() - 1);
+        System.out.println(res);
+    }
+
+    public static int longestSubsequence(String s1, String s2, int lastElementIndex1, int lastElementIndex2) {
+        if (lastElementIndex1>0 && lastElementIndex2>0 && memo[lastElementIndex1][lastElementIndex2] != -1)
+            return memo[lastElementIndex1][lastElementIndex2];
+        else {
+            if (lastElementIndex1 < 0 || lastElementIndex2 < 0)
+                return 0;
+            if (s1.charAt(lastElementIndex1) == s2.charAt(lastElementIndex2))
+                return 1 + longestSubsequence(s1, s2, lastElementIndex1 - 1, lastElementIndex2 - 1);
+            return Math.max(
+                    longestSubsequence(s1, s2, lastElementIndex1, lastElementIndex2 - 1)
+                    ,
+                    longestSubsequence(s1, s2, lastElementIndex1 - 1, lastElementIndex2)
+            );
+        }
+
+    }
+}
+
