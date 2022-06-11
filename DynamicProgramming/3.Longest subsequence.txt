@@ -1,0 +1,25 @@
+public class Main {
+
+    public static void main(String[] args) {
+        String s1 = "ABC";
+        String s2 = "BCA";
+
+        int res = longestSubsequence(s1, s2, s1.length()-1, s2.length()-1);
+        System.out.println(res);
+    }
+
+    public static int longestSubsequence(String s1, String s2, int lastElementIndex1, int lastElementIndex2) {
+        if (lastElementIndex1 < 0 || lastElementIndex2 < 0)
+            return 0;
+        if (s1.charAt(lastElementIndex1) == s2.charAt(lastElementIndex2))
+            return 1 + longestSubsequence(s1, s2, lastElementIndex1 - 1, lastElementIndex2 - 1);
+        return Math.max(
+                longestSubsequence(s1, s2, lastElementIndex1, lastElementIndex2 - 1)
+                ,
+                longestSubsequence(s1, s2, lastElementIndex1 - 1, lastElementIndex2)
+        );
+
+    }
+
+}
+
