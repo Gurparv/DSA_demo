@@ -1,0 +1,19 @@
+public class Main {
+
+    public static void main(String[] args) {
+        int[] coins = {1, 2, 3};
+        int sum = 4;
+        getCount(coins, coins.length, sum);
+    }
+
+    public static int getCount(int[] coins, int n, int sum) {
+        if (sum == 0) return 1;
+        if (n == 0) return 0;
+        int res = getCount(coins, n - 1, sum);  //Not including the current item
+        if (coins[n - 1] <= sum)
+            res += getCount(coins, n, sum - coins[n - 1]); //including the current item
+        return res;
+    }
+
+}
+
