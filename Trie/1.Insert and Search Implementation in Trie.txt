@@ -1,0 +1,46 @@
+public class TrieNode {
+    TrieNode[] child ;
+    boolean isEnd;
+
+    public TrieNode() {
+        child = new TrieNode[26];
+        isEnd = false;
+    }
+
+    public boolean search(TrieNode root,String key){
+       TrieNode curr = root;
+       for(int i=0;i<key.length();i++){
+          int index = key.charAt(i)-'a';
+          if(curr.child[index]==null)
+              return false;
+          curr = curr.child[index];
+       }
+       return curr.isEnd;
+    }
+
+    public void insert(TrieNode root,String value){
+       TrieNode curr = root;
+       for(int i=0;i<value.length();i++){
+          int index = value.charAt(i)-'a';
+          if(curr.child[index]==null)
+              curr.child[index]=new TrieNode();
+          curr=curr.child[index];
+       }
+       curr.isEnd=true;
+    }
+}
+////////////////////////////////////////////////////////////////////////////////
+public class Main {
+
+    public static void main(String[] args) {
+       TrieNode t = new TrieNode();
+       String[] keys = {"bad","bat","geeks","geek","cat"};
+       for(int i=0;i< keys.length;i++)
+           t.insert(t,keys[i]);
+
+        System.out.println(t.search(t,"bad"));
+        System.out.println(t.search(t,"bid"));
+    }
+
+
+}
