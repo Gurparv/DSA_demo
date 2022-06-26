@@ -1,0 +1,29 @@
+public class Main2{
+    static int[] arr = {10,20,30,40};
+    static int n=  arr.length;
+    static int[] tree = new int[4*n];
+
+    public static void main(String[] args){
+        createSegmentTree(0,arr.length-1,0);
+        for(int i=0;i<4*n;i++)
+            System.out.print(tree[i]+" ");
+    }
+
+
+    public static int createSegmentTree(int startIndex, int endIndex, int arrIndex){
+        if(startIndex==endIndex){
+            tree[arrIndex]=arr[startIndex];
+            return arr[startIndex];
+        }
+        int mid = (startIndex+endIndex)/2;
+        tree[arrIndex] = createSegmentTree(startIndex,mid,2*arrIndex+1)+
+                createSegmentTree(mid+1,endIndex,2*arrIndex+2);
+        return tree[arrIndex];
+
+
+
+    }
+
+}
+
+
